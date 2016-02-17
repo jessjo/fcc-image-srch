@@ -18,7 +18,7 @@ app.route('/app/imgs/:query')
     var search = new Search(process.env.API_KEY);
     var searchResults =[];
     search.images(userSearch,
-      {top:10, skip:offset},
+      {top:5, skip:offset},
       function(err, results) {
         if (err) throw err;
         for(var i=0; i<results.length; i++){
@@ -27,13 +27,13 @@ app.route('/app/imgs/:query')
            thumbnail: results[i].url,
            url: results[i].sourceUrl
           };
-          console.log(searchResults[i]);
+  
         }
-        // cycle through results for correct info 
-        
+         res.send(searchResults);
+        // cycle through results for correct info        
     }
 );
-    res.sendFile(process.cwd() + '/public/index.html');
+   
 });
 
 };
